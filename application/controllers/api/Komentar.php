@@ -24,7 +24,7 @@ class Komentar extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id not found'
+                'message' => 'id tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -32,68 +32,66 @@ class Komentar extends REST_Controller{
     public function index_delete(){
         $id = $this->delete('id');
         if ($id == null){
-            var_dump($id);
             $this->response([
                 'status' => false,
-                'message' => 'provide an id'
+                'message' => 'tambahkan id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
             if ($this->mkomentar->deleteKomentar($id)>0){
                 //ok
                 $this->response([
                     'status' => true,
-                    'id' => $id,
-                    'message' => 'deleted'
+                    'message' => 'terhapus'
                 ], REST_Controller::HTTP_NO_CONTENT);
             }
             else{
                 $this->response([
                     'status' => false,
-                    'message' => 'id not found'
+                    'message' => 'id tidak ditemukan'
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }          
         }
     }
     public function index_post(){
         $data=[
-            'nrp' => $this->post('nrp'),
-            'nama' => $this->post('nama'),
-            'email' => $this->post('email'),
-            'jurusan' => $this->post('jurusan')
+            'id_post' => $this->post('id_post'),
+            'waktu' => $this->post('waktu'),
+            'pesan' => $this->post('pesan'),
+            'pengirim' => $this->post('pengirim'),
+            'file' => $this->post('file')
         ];
         
         if ($this->mkomentar->createKomentar($data)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
-                'message' => 'new Komentar has been created'
+                'message' => 'komentar baru ditambahkan'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to create new data'
+                'message' => 'gagal menambahkan data baru'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'nrp' => $this->put('nrp'),
-            'nama' => $this->put('nama'),
-            'email' => $this->put('email'),
-            'jurusan' => $this->put('jurusan')
+            'id_post' => $this->post('id_post'),
+            'waktu' => $this->post('waktu'),
+            'pesan' => $this->post('pesan'),
+            'pengirim' => $this->post('pengirim'),
+            'file' => $this->post('file')
         ];
 
         if ($this->mkomentar->updateKomentar($data,$id)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
-                'message' => 'new Komentar has been updated'
+                'message' => 'komentar telah diperbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to update data'
+                'message' => 'gagal memperbarui komentar'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }

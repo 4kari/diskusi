@@ -10,11 +10,11 @@ class Posting extends REST_Controller{
         $this->load->model('Posting_model','mposting');
     }
     public function index_get(){
-        $judul = $this->get('judul');
-        if ($judul == null) {
+        $id = $this->get('id');
+        if ($id == null) {
             $Posting = $this->mposting->getPosting();
         } else{
-            $Posting = $this->mposting->getPosting($judul);
+            $Posting = $this->mposting->getPosting($id);
         }
         if ($Posting){
             $this->response([
@@ -24,21 +24,20 @@ class Posting extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'judul tidak ditemukan'
+                'message' => 'id tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
     public function index_delete(){
-        $judul = $this->delete('judul');
-        if ($judul == null){
-            var_dump($judul);
+        $id = $this->delete('id');
+        if ($id == null){
             $this->response([
                 'status' => false,
-                'message' => 'Tambahkan judul'
+                'message' => 'Tambahkan id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->mposting->deletePosting($judul)>0){
+            if ($this->mposting->deletePosting($id)>0){
                 //ok
                 $this->response([
                     'status' => true,
@@ -48,17 +47,17 @@ class Posting extends REST_Controller{
             else{
                 $this->response([
                     'status' => false,
-                    'message' => 'judul tidak ditemukan'
+                    'message' => 'id tidak ditemukan'
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }          
         }
     }
     public function index_post(){
         $data=[
-            'nrp' => $this->post('judul'),
-            'nama' => $this->post('file'),
-            'email' => $this->post('tipe'),
-            'jurusan' => $this->post('tanggal_dibuat')
+            'judul' => $this->post('judul'),
+            'file' => $this->post('file'),
+            'tipe' => $this->post('tipe'),
+            'tanggal_dibuat' => $this->post('tanggal_dibuat')
         ];
         
         if ($this->mposting->createPosting($data)>0){
@@ -74,15 +73,15 @@ class Posting extends REST_Controller{
         }
     }
     public function index_put(){
-        $judul=$this->put('judul');
+        $id=$this->put('id');
         $data=[
-            'nrp' => $this->post('judul'),
-            'nama' => $this->post('file'),
-            'email' => $this->post('tipe'),
-            'jurusan' => $this->post('tanggal_dibuat')
+            'judul' => $this->post('judul'),
+            'file' => $this->post('file'),
+            'tipe' => $this->post('tipe'),
+            'tanggal_dibuat' => $this->post('tanggal_dibuat')
         ];
 
-        if ($this->mposting->updatePosting($data,$judul)>0){
+        if ($this->mposting->updatePosting($data,$id)>0){
             $this->response([
                 'status' => true,
                 'message' => 'Data post telah diperbarui'

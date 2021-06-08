@@ -1,22 +1,22 @@
 <?php
-class Mahasiswa_model extends CI_Model{
-    public function getMahasiswa($id=null){
+class Komentar_model extends CI_Model{
+    public function getKomentar($id=null){
         if ($id === null){
-            return $this->db->get('mahasiswa')->result_array();
+            return $this->db->get('komentar')->result_array();
         } else {
-            return $this->db->get_where('mahasiswa', ['id' => $id])->row_array();
+            return $this->db->get_where('komentar', ['id' => $id])->row_array();
         }
     }
-    public function deleteMahasiswa($id){
-        $this->db->delete('mahasiswa', ['id' => $id]);
+    public function deleteKomentar($id){
+        $this->db->delete('komentar', ['id' => $id]);
         return $this->db->affected_rows();
     }
-    public function createMahasiswa($data){
-        $this->db->insert('mahasiswa',$data);
+    public function createKomentar($data){
+        $this->db->insert('komentar',$data);
         return $this->db->affected_rows();
     }
-    public function updateMahasiswa($data,$id){
-        $this->db->update('mahasiswa', $data, ['id' => $id]);
+    public function updateKomentar($data,$id){
+        $this->db->update('komentar', $data, ['id' => $id]);
         return $this->db->affected_rows();
     }
 }
