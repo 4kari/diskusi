@@ -24,7 +24,7 @@ class Komentar extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id tidak ditemukan'
+                'message' => 'data tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -57,6 +57,7 @@ class Komentar extends REST_Controller{
             'id_post' => $this->post('id_post'),
             'waktu' => $this->post('waktu'),
             'pesan' => $this->post('pesan'),
+            'tipe' => $this->post('tipe'),
             'pengirim' => $this->post('pengirim'),
             'file' => $this->post('file')
         ];
@@ -76,11 +77,12 @@ class Komentar extends REST_Controller{
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'id_post' => $this->post('id_post'),
-            'waktu' => $this->post('waktu'),
-            'pesan' => $this->post('pesan'),
-            'pengirim' => $this->post('pengirim'),
-            'file' => $this->post('file')
+            'id_post' => $this->put('id_post'),
+            'waktu' => $this->put('waktu'),
+            'pesan' => $this->put('pesan'),
+            'tipe' => $this->put('tipe'),
+            'pengirim' => $this->put('pengirim'),
+            'file' => $this->put('file')
         ];
 
         if ($this->mkomentar->updateKomentar($data,$id)>0){

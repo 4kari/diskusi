@@ -24,7 +24,7 @@ class Posting extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id tidak ditemukan'
+                'message' => 'data tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -75,10 +75,10 @@ class Posting extends REST_Controller{
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'judul' => $this->post('judul'),
-            'file' => $this->post('file'),
-            'tipe' => $this->post('tipe'),
-            'tanggal_dibuat' => $this->post('tanggal_dibuat')
+            'judul' => $this->put('judul'),
+            'file' => $this->put('file'),
+            'tipe' => $this->put('tipe'),
+            'tanggal_dibuat' => $this->put('tanggal_dibuat')
         ];
 
         if ($this->mposting->updatePosting($data,$id)>0){

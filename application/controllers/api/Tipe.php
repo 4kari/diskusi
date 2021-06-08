@@ -24,7 +24,7 @@ class Tipe extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id tidak ditemukan'
+                'message' => 'data tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -55,7 +55,7 @@ class Tipe extends REST_Controller{
     }
     public function index_post(){
         $data=[
-            'nrp' => $this->post('keterangan')
+            'keterangan' => $this->post('keterangan')
         ];
         
         if ($this->tm->createTipe($data)>0){
@@ -73,7 +73,7 @@ class Tipe extends REST_Controller{
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'nrp' => $this->post('keterangan')
+            'keterangan' => $this->put('keterangan')
         ];
 
         if ($this->tm->updateTipe($data,$id)>0){
