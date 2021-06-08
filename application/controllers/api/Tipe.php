@@ -4,27 +4,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
-class Mahasiswa extends REST_Controller{
+class Tipe extends REST_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->model('Mahasiswa_model','mhs');
+        $this->load->model('Tipe_model','tm');
     }
     public function index_get(){
         $id = $this->get('id');
         if ($id == null) {
-            $mahasiswa = $this->mhs->getMahasiswa();
+            $Tipe = $this->tm->getTipe();
         } else{
-            $mahasiswa = $this->mhs->getMahasiswa($id);
+            $Tipe = $this->tm->getTipe($id);
         }
-        if ($mahasiswa){
+        if ($Tipe){
             $this->response([
                 'status' => true,
-                'data' =>$mahasiswa
+                'data' =>$Tipe
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id not found'
+                'message' => 'id tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
@@ -35,65 +35,59 @@ class Mahasiswa extends REST_Controller{
             var_dump($id);
             $this->response([
                 'status' => false,
-                'message' => 'provide an id'
+                'message' => 'tambahkan id untuk hapus'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->mhs->deleteMahasiswa($id)>0){
+            if ($this->tm->deleteTipe($id)>0){
                 //ok
                 $this->response([
                     'status' => true,
                     'id' => $id,
-                    'message' => 'deleted'
+                    'message' => 'terhapus'
                 ], REST_Controller::HTTP_NO_CONTENT);
             }
             else{
                 $this->response([
                     'status' => false,
-                    'message' => 'id not found'
+                    'message' => 'id tidak ditemukan'
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }          
         }
     }
     public function index_post(){
         $data=[
-            'nrp' => $this->post('nrp'),
-            'nama' => $this->post('nama'),
-            'email' => $this->post('email'),
-            'jurusan' => $this->post('jurusan')
+            'nrp' => $this->post('keterangan')
         ];
         
-        if ($this->mhs->createMahasiswa($data)>0){
+        if ($this->tm->createTipe($data)>0){
             $this->response([
                 'status' => true,
                 'id' => $id,
-                'message' => 'new mahasiswa has been created'
+                'message' => 'Tipe baru berhasil dibuat'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to create new data'
+                'message' => 'Gagal menambahkan tipe baru'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'nrp' => $this->put('nrp'),
-            'nama' => $this->put('nama'),
-            'email' => $this->put('email'),
-            'jurusan' => $this->put('jurusan')
+            'nrp' => $this->post('keterangan')
         ];
 
-        if ($this->mhs->updateMahasiswa($data,$id)>0){
+        if ($this->tm->updateTipe($data,$id)>0){
             $this->response([
                 'status' => true,
                 'id' => $id,
-                'message' => 'new mahasiswa has been updated'
+                'message' => 'Tipe berhasil di perbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to update data'
+                'message' => 'Gagal memperbarui data'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
