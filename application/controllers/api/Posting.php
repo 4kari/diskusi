@@ -10,11 +10,11 @@ class Posting extends REST_Controller{
         $this->load->model('Posting_model','mposting');
     }
     public function index_get(){
-        $id = $this->get('id');
-        if ($id == null) {
+        $judul = $this->get('judul');
+        if ($judul == null) {
             $Posting = $this->mposting->getPosting();
         } else{
-            $Posting = $this->mposting->getPosting($id);
+            $Posting = $this->mposting->getPosting($judul);
         }
         if ($Posting){
             $this->response([
@@ -24,76 +24,73 @@ class Posting extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'id not found'
+                'message' => 'judul tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
     public function index_delete(){
-        $id = $this->delete('id');
-        if ($id == null){
-            var_dump($id);
+        $judul = $this->delete('judul');
+        if ($judul == null){
+            var_dump($judul);
             $this->response([
                 'status' => false,
-                'message' => 'provide an id'
+                'message' => 'Tambahkan judul'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->mposting->deletePosting($id)>0){
+            if ($this->mposting->deletePosting($judul)>0){
                 //ok
                 $this->response([
                     'status' => true,
-                    'id' => $id,
-                    'message' => 'deleted'
+                    'message' => 'Terhapus'
                 ], REST_Controller::HTTP_NO_CONTENT);
             }
             else{
                 $this->response([
                     'status' => false,
-                    'message' => 'id not found'
+                    'message' => 'judul tidak ditemukan'
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }          
         }
     }
     public function index_post(){
         $data=[
-            'nrp' => $this->post('nrp'),
-            'nama' => $this->post('nama'),
-            'email' => $this->post('email'),
-            'jurusan' => $this->post('jurusan')
+            'nrp' => $this->post('judul'),
+            'nama' => $this->post('file'),
+            'email' => $this->post('tipe'),
+            'jurusan' => $this->post('tanggal_dibuat')
         ];
         
         if ($this->mposting->createPosting($data)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
-                'message' => 'new Posting has been created'
+                'message' => 'Post baru telah ditambahkan'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to create new data'
+                'message' => 'Gagal menambahkan post'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     public function index_put(){
-        $id=$this->put('id');
+        $judul=$this->put('judul');
         $data=[
-            'nrp' => $this->put('nrp'),
-            'nama' => $this->put('nama'),
-            'email' => $this->put('email'),
-            'jurusan' => $this->put('jurusan')
+            'nrp' => $this->post('judul'),
+            'nama' => $this->post('file'),
+            'email' => $this->post('tipe'),
+            'jurusan' => $this->post('tanggal_dibuat')
         ];
 
-        if ($this->mposting->updatePosting($data,$id)>0){
+        if ($this->mposting->updatePosting($data,$judul)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
-                'message' => 'new Posting has been updated'
+                'message' => 'Data post telah diperbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'failed to update data'
+                'message' => 'Gagal memperbarui data'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }

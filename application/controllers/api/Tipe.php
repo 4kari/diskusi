@@ -42,7 +42,6 @@ class Tipe extends REST_Controller{
                 //ok
                 $this->response([
                     'status' => true,
-                    'id' => $id,
                     'message' => 'terhapus'
                 ], REST_Controller::HTTP_NO_CONTENT);
             }
@@ -62,7 +61,6 @@ class Tipe extends REST_Controller{
         if ($this->tm->createTipe($data)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
                 'message' => 'Tipe baru berhasil dibuat'
             ], REST_Controller::HTTP_CREATED);
         } else {
@@ -81,7 +79,6 @@ class Tipe extends REST_Controller{
         if ($this->tm->updateTipe($data,$id)>0){
             $this->response([
                 'status' => true,
-                'id' => $id,
                 'message' => 'Tipe berhasil di perbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
