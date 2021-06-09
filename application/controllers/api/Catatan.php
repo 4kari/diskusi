@@ -4,22 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
-class Komentar extends REST_Controller{
+class Catatan extends REST_Controller{
     public function __construct(){
         parent::__construct();
-        $this->load->model('Komentar_model','mkomentar');
+        $this->load->model('Catatan_model','mCatatan');
     }
     public function index_get(){
         $id = $this->get('id');
         if ($id == null) {
-            $Komentar = $this->mkomentar->getKomentar();
+            $Catatan = $this->mCatatan->getCatatan();
         } else{
-            $Komentar = $this->mkomentar->getKomentar($id);
+            $Catatan = $this->mCatatan->getCatatan($id);
         }
-        if ($Komentar){
+        if ($Catatan){
             $this->response([
                 'status' => true,
-                'data' =>$Komentar
+                'data' =>$Catatan
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
@@ -37,7 +37,7 @@ class Komentar extends REST_Controller{
                 'message' => 'tambahkan id'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->mkomentar->deleteKomentar($id)>0){
+            if ($this->mCatatan->deleteCatatan($id)>0){
                 //ok
                 $this->response([
                     'status' => true,
@@ -54,17 +54,17 @@ class Komentar extends REST_Controller{
     }
     public function index_post(){
         $data=[
-            'id_post' => $this->post('id_post'),
-            'waktu' => $this->post('waktu'),
+            'tipe' => $this->post('tipe'),
             'pesan' => $this->post('pesan'),
             'pengirim' => $this->post('pengirim'),
-            'file' => $this->post('file')
+            'validasi' => $this->post('validasi'),
+            'waktu' => $this->post('waktu')
         ];
         
-        if ($this->mkomentar->createKomentar($data)>0){
+        if ($this->mCatatan->createCatatan($data)>0){
             $this->response([
                 'status' => true,
-                'message' => 'komentar baru ditambahkan'
+                'message' => 'Catatan baru ditambahkan'
             ], REST_Controller::HTTP_CREATED);
         } else {
             $this->response([
@@ -76,22 +76,21 @@ class Komentar extends REST_Controller{
     public function index_put(){
         $id=$this->put('id');
         $data=[
-            'id_post' => $this->put('id_post'),
-            'waktu' => $this->put('waktu'),
+            'tipe' => $this->put('tipe'),
             'pesan' => $this->put('pesan'),
             'pengirim' => $this->put('pengirim'),
-            'file' => $this->put('file')
+            'validasi' => $this->put('validasi'),
+            'waktu' => $this->put('waktu')
         ];
-
-        if ($this->mkomentar->updateKomentar($data,$id)>0){
+        if ($this->mCatatan->updateCatatan($data,$id)>0){
             $this->response([
                 'status' => true,
-                'message' => 'komentar telah diperbarui'
+                'message' => 'Catatan telah diperbarui'
             ], REST_Controller::HTTP_NO_CONTENT);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'gagal memperbarui komentar'
+                'message' => 'gagal memperbarui Catatan'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
