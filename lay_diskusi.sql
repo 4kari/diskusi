@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2021 at 05:09 PM
+-- Generation Time: Jun 10, 2021 at 07:52 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,6 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `catatan`
+--
+
+CREATE TABLE `catatan` (
+  `id` int(11) NOT NULL,
+  `tipe` int(2) NOT NULL,
+  `pesan` varchar(64) NOT NULL,
+  `pengirim` varchar(18) NOT NULL,
+  `validasi` varchar(16) NOT NULL,
+  `waktu` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `komentar`
 --
 
@@ -36,6 +51,13 @@ CREATE TABLE `komentar` (
   `pengirim` varchar(32) NOT NULL,
   `file` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`, `file`) VALUES
+(1, 1, '06092021', 'test', 'dp1', 'baru.pdf');
 
 -- --------------------------------------------------------
 
@@ -51,6 +73,13 @@ CREATE TABLE `post` (
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `judul`, `file`, `tipe`, `tanggal_dibuat`) VALUES
+(1, 'baru', 'baru.pdf', 2, '0000-00-00');
+
 -- --------------------------------------------------------
 
 --
@@ -63,8 +92,24 @@ CREATE TABLE `tipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `tipe`
+--
+
+INSERT INTO `tipe` (`id`, `keterangan`) VALUES
+(1, 'bimbingan'),
+(2, 'proposal'),
+(3, 'sidang');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `catatan`
+--
+ALTER TABLE `catatan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catatan_tipe` (`tipe`);
 
 --
 -- Indexes for table `komentar`
@@ -91,26 +136,38 @@ ALTER TABLE `tipe`
 --
 
 --
+-- AUTO_INCREMENT for table `catatan`
+--
+ALTER TABLE `catatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tipe`
 --
 ALTER TABLE `tipe`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `catatan`
+--
+ALTER TABLE `catatan`
+  ADD CONSTRAINT `catatan_tipe` FOREIGN KEY (`tipe`) REFERENCES `tipe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `komentar`
