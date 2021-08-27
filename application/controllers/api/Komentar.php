@@ -58,7 +58,8 @@ class Komentar extends REST_Controller{
             'waktu' => $this->post('waktu'),
             'pesan' => $this->post('pesan'),
             'pengirim' => $this->post('pengirim'),
-            'file' => $this->post('file')
+            'file' => $this->post('file'),
+            'catatan' => $this->post('catatan')
         ];
         
         if ($this->mkomentar->createKomentar($data)>0){
@@ -81,6 +82,7 @@ class Komentar extends REST_Controller{
             'pesan' => $this->put('pesan'),
             'pengirim' => $this->put('pengirim'),
             'file' => $this->put('file')
+            'catatan' => $this->put('catatan')
         ];
 
         if ($this->mkomentar->updateKomentar($data,$id)>0){

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 07:52 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Aug 27, 2021 at 04:00 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,21 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `catatan`
---
-
-CREATE TABLE `catatan` (
-  `id` int(11) NOT NULL,
-  `tipe` int(2) NOT NULL,
-  `pesan` varchar(64) NOT NULL,
-  `pengirim` varchar(18) NOT NULL,
-  `validasi` varchar(16) NOT NULL,
-  `waktu` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `komentar`
 --
 
@@ -49,15 +33,16 @@ CREATE TABLE `komentar` (
   `waktu` varchar(32) NOT NULL,
   `pesan` varchar(64) DEFAULT NULL,
   `pengirim` varchar(32) NOT NULL,
-  `file` varchar(32) DEFAULT NULL
+  `file` varchar(32) DEFAULT NULL,
+  `catatan` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `komentar`
 --
 
-INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`, `file`) VALUES
-(1, 1, '06092021', 'test', 'dp1', 'baru.pdf');
+INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`, `file`, `catatan`) VALUES
+(1, 1, '06092021', 'test', 'dp1', 'baru.pdf', NULL);
 
 -- --------------------------------------------------------
 
@@ -78,7 +63,7 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `judul`, `file`, `tipe`, `tanggal_dibuat`) VALUES
-(1, 'baru', 'baru.pdf', 2, '0000-00-00');
+(1, 'baru2', 'baru2.pdf', 2, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -105,13 +90,6 @@ INSERT INTO `tipe` (`id`, `keterangan`) VALUES
 --
 
 --
--- Indexes for table `catatan`
---
-ALTER TABLE `catatan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `catatan_tipe` (`tipe`);
-
---
 -- Indexes for table `komentar`
 --
 ALTER TABLE `komentar`
@@ -136,22 +114,16 @@ ALTER TABLE `tipe`
 --
 
 --
--- AUTO_INCREMENT for table `catatan`
---
-ALTER TABLE `catatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tipe`
@@ -162,12 +134,6 @@ ALTER TABLE `tipe`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `catatan`
---
-ALTER TABLE `catatan`
-  ADD CONSTRAINT `catatan_tipe` FOREIGN KEY (`tipe`) REFERENCES `tipe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `komentar`
