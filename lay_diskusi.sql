@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2021 at 04:00 PM
+-- Generation Time: Sep 11, 2021 at 08:38 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -37,13 +37,6 @@ CREATE TABLE `komentar` (
   `catatan` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `komentar`
---
-
-INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`, `file`, `catatan`) VALUES
-(1, 1, '06092021', 'test', 'dp1', 'baru.pdf', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -57,13 +50,6 @@ CREATE TABLE `post` (
   `tipe` int(1) NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `post`
---
-
-INSERT INTO `post` (`id`, `judul`, `file`, `tipe`, `tanggal_dibuat`) VALUES
-(1, 'baru2', 'baru2.pdf', 2, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -117,13 +103,13 @@ ALTER TABLE `tipe`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tipe`

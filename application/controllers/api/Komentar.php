@@ -81,7 +81,7 @@ class Komentar extends REST_Controller{
             'waktu' => $this->put('waktu'),
             'pesan' => $this->put('pesan'),
             'pengirim' => $this->put('pengirim'),
-            'file' => $this->put('file')
+            'file' => $this->put('file'),
             'catatan' => $this->put('catatan')
         ];
 
