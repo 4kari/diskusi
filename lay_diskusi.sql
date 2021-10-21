@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 08:38 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Waktu pembuatan: 21 Okt 2021 pada 03.52
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komentar`
+-- Struktur dari tabel `komentar`
 --
 
 CREATE TABLE `komentar` (
@@ -40,13 +40,13 @@ CREATE TABLE `komentar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Struktur dari tabel `post`
 --
 
 CREATE TABLE `post` (
   `id` int(11) NOT NULL,
-  `judul` varchar(32) NOT NULL,
-  `file` varchar(32) NOT NULL,
+  `id_skripsi` int(11) NOT NULL,
+  `file` varchar(64) NOT NULL,
   `tipe` int(1) NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -54,7 +54,7 @@ CREATE TABLE `post` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipe`
+-- Struktur dari tabel `tipe`
 --
 
 CREATE TABLE `tipe` (
@@ -63,7 +63,7 @@ CREATE TABLE `tipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tipe`
+-- Dumping data untuk tabel `tipe`
 --
 
 INSERT INTO `tipe` (`id`, `keterangan`) VALUES
@@ -76,59 +76,59 @@ INSERT INTO `tipe` (`id`, `keterangan`) VALUES
 --
 
 --
--- Indexes for table `komentar`
+-- Indeks untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `komentar_post` (`id_post`);
 
 --
--- Indexes for table `post`
+-- Indeks untuk tabel `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
   ADD KEY `post_tipe` (`tipe`);
 
 --
--- Indexes for table `tipe`
+-- Indeks untuk tabel `tipe`
 --
 ALTER TABLE `tipe`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `komentar`
+-- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `post`
+-- AUTO_INCREMENT untuk tabel `post`
 --
 ALTER TABLE `post`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tipe`
+-- AUTO_INCREMENT untuk tabel `tipe`
 --
 ALTER TABLE `tipe`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `komentar`
+-- Ketidakleluasaan untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
   ADD CONSTRAINT `komentar_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `post`
+-- Ketidakleluasaan untuk tabel `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_tipe` FOREIGN KEY (`tipe`) REFERENCES `tipe` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

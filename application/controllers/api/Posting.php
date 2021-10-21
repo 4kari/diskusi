@@ -11,10 +11,13 @@ class Posting extends REST_Controller{
     }
     public function index_get(){
         $id = $this->get('id');
-        if ($id == null) {
+        $id_skripsi = $this->get('id_skripsi');
+        if ($id) {
+            $Posting = $this->mposting->getPostingById($id);
+        }elseif($id_skripsi){
+            $Posting = $this->mposting->getPostingBySkripsi($id_skripsi);
+        }else{
             $Posting = $this->mposting->getPosting();
-        } else{
-            $Posting = $this->mposting->getPosting($id);
         }
         if ($Posting){
             $this->response([
@@ -54,7 +57,7 @@ class Posting extends REST_Controller{
     }
     public function index_post(){
         $data=[
-            'judul' => $this->post('judul'),
+            'id_skripsi' => $this->post('id_skripsi'),
             'file' => $this->post('file'),
             'tipe' => $this->post('tipe'),
             'tanggal_dibuat' => $this->post('tanggal_dibuat')
