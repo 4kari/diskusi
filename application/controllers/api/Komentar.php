@@ -11,10 +11,13 @@ class Komentar extends REST_Controller{
     }
     public function index_get(){
         $id = $this->get('id');
-        if ($id == null) {
+        $id_post = $this->get('id_post');
+        if ($id) {
+            $Komentar = $this->mkomentar->getKomentarById($id);
+        } elseif($id_post){
+            $Komentar = $this->mkomentar->getKomentarByIdPost($id_post);
+        }else{
             $Komentar = $this->mkomentar->getKomentar();
-        } else{
-            $Komentar = $this->mkomentar->getKomentar($id);
         }
         if ($Komentar){
             $this->response([

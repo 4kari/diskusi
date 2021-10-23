@@ -1,11 +1,13 @@
 <?php
 class Komentar_model extends CI_Model{
-    public function getKomentar($id=null){
-        if ($id === null){
-            return $this->db->get('komentar')->result_array();
-        } else {
-            return $this->db->get_where('komentar', ['id' => $id])->row_array();
-        }
+    public function getKomentar(){
+        return $this->db->get('komentar')->result_array();
+    }
+    public function getKomentarById($id){
+        return $this->db->get_where('komentar', ['id' => $id])->result_array();
+    }
+    public function getKomentarByIdPost($id){
+        return $this->db->get_where('komentar', ['id_post' => $id])->result_array();
     }
     public function deleteKomentar($id){
         $this->db->delete('komentar', ['id' => $id]);
