@@ -12,10 +12,13 @@ class Posting extends REST_Controller{
     public function index_get(){
         $id = $this->get('id');
         $id_skripsi = $this->get('id_skripsi');
+        $nip = $this->get('nip');
         if ($id) {
             $Posting = $this->mposting->getPostingById($id);
         }elseif($id_skripsi){
             $Posting = $this->mposting->getPostingBySkripsi($id_skripsi);
+        }elseif($nip){
+            $Posting = $this->mposting->getPostingByNip($nip);
         }else{
             $Posting = $this->mposting->getPosting();
         }
