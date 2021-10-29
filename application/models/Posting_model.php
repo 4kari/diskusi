@@ -29,13 +29,23 @@ class Posting_model extends CI_Model{
         $post=$skripsi;//inisialisasi post
         //looping untuk ambil postingan dari setiap skripsi
         for ($i=0;$i<count($skripsi);$i++){
-            if($skripsi[$i]['status']>=1){
+            if($skripsi[$i]['status']>=1 && $skripsi[$i]['status']<=7){
                 $id_skripsi=$skripsi[$i]['id'];
                 $post[$i]=$this->db->get_where('post', ['id_skripsi' => $id_skripsi])->row_array();
                 $post[$i]['data_skripsi']=$skripsi[$i];
             }
         }
-        return $post;
+        $hasil=[[],[],[]];
+        for ($i=0;$i<count($post);$i++){
+            if($post[$i]['tipe']==1){
+                array_push($hasil[0],$post[$i]);
+            }elseif($post[$i]['tipe']==2){
+                array_push($hasil[1],$post[$i]);
+            }else{
+                array_push($hasil[2],$posti[$i]);
+            }
+        }
+        return $hasil;
     }
     private function olahPosting($post){
         for ($i = 0; $i < count($post); $i++){
