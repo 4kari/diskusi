@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Okt 2021 pada 03.52
+-- Waktu pembuatan: 31 Okt 2021 pada 15.42
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -32,10 +32,15 @@ CREATE TABLE `komentar` (
   `id_post` int(11) NOT NULL,
   `waktu` varchar(32) NOT NULL,
   `pesan` varchar(64) DEFAULT NULL,
-  `pengirim` varchar(32) NOT NULL,
-  `file` varchar(32) DEFAULT NULL,
-  `catatan` varchar(5) DEFAULT NULL
+  `pengirim` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `komentar`
+--
+
+INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`) VALUES
+(1, 1, '1635684157', 'silahkan dikerjakan file proposalnya untuk melanjutkan ke jenjan', '170411100042');
 
 -- --------------------------------------------------------
 
@@ -50,6 +55,15 @@ CREATE TABLE `post` (
   `tipe` int(1) NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `post`
+--
+
+INSERT INTO `post` (`id`, `id_skripsi`, `file`, `tipe`, `tanggal_dibuat`) VALUES
+(1, 1, '', 1, '0000-00-00'),
+(2, 2, '', 2, '0000-00-00'),
+(3, 3, '', 3, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -103,13 +117,13 @@ ALTER TABLE `tipe`
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tipe`
