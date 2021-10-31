@@ -26,13 +26,15 @@ class Posting_model extends CI_Model{
             elseif($skripsi[$i]['penguji_3']==$nip){$sebagai="penguji_3";}
             $skripsi[$i]['sebagai']=$sebagai;
         }
-        $post=$skripsi;//inisialisasi post
+        $post=[];//inisialisasi post
         //looping untuk ambil postingan dari setiap skripsi
         for ($i=0;$i<count($skripsi);$i++){
             if($skripsi[$i]['status']>=1 && $skripsi[$i]['status']<=7){
                 $id_skripsi=$skripsi[$i]['id'];
                 $post[$i]=$this->db->get_where('post', ['id_skripsi' => $id_skripsi])->row_array();
-                $post[$i]['data_skripsi']=$skripsi[$i];
+                if($post[$i]){
+                    $post[$i]['data_skripsi']=$skripsi[$i];
+                }
             }
         }
         $hasil=[[],[],[]];
@@ -42,7 +44,7 @@ class Posting_model extends CI_Model{
             }elseif($post[$i]['tipe']==2){
                 array_push($hasil[1],$post[$i]);
             }else{
-                array_push($hasil[2],$posti[$i]);
+                array_push($hasil[2],$post[$i]);
             }
         }
         return $hasil;
