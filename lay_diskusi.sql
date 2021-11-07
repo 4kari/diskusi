@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Nov 2021 pada 16.12
+-- Waktu pembuatan: 07 Nov 2021 pada 13.35
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -42,7 +42,8 @@ CREATE TABLE `komentar` (
 INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`) VALUES
 (1, 1, '1635684157', 'silahkan dikerjakan file proposalnya untuk melanjutkan ke jenjan', '170411100042'),
 (2, 1, '1635765747', 'segera upload filenya sehingga dapat kami periksa kekurangannya', '170411100024'),
-(3, 1, '1635775209', 'baik akan saya kerjakan', '170411100099');
+(3, 1, '1635775209', 'baik akan saya kerjakan', '170411100099'),
+(4, 1, '1635865059', 'sedang saya kerjakan', '170411100099');
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,7 @@ ALTER TABLE `tipe`
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `post`
