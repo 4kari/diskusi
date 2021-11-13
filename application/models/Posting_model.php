@@ -36,7 +36,6 @@ class Posting_model extends CI_Model{
             elseif($skripsi[$i]['penguji_2']==$nip){$sebagai="penguji_2";}
             elseif($skripsi[$i]['penguji_3']==$nip){$sebagai="penguji_3";}
             $skripsi[$i]['sebagai'] = $sebagai;
-            $skripsi[$i]['validasi'] = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/Validasi/',array('id_skripsi'=>$skripsi[$i]['id']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         }
 
         $post=[];//inisialisasi post
