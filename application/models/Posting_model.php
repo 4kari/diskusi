@@ -22,8 +22,8 @@ class Posting_model extends CI_Model{
         }
         return $hasil;
     }
+    
     public function getPostingByNip($nip){
-        //ambil semua data skripsi dengan nip
         $skripsi = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/Skripsi/',array('nip'=>$nip), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
         // $skripsi = json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/skripsi/',array('nip'=>$nip), array(CURLOPT_BUFFERSIZE => 10)),true)['data];
 
@@ -37,26 +37,14 @@ class Posting_model extends CI_Model{
             elseif($skripsi[$i]['penguji_3']==$nip){$sebagai="penguji_3";}
             $skripsi[$i]['sebagai'] = $sebagai;
         }
-
-        $post=[];//inisialisasi post
-        //looping untuk ambil postingan dari setiap skripsi
-        for ($i=0;$i<count($skripsi);$i++){
-            if($skripsi[$i]['status']>=1 && $skripsi[$i]['status']<=7){
-                $id_skripsi=$skripsi[$i]['id'];
-                $post[$i]=$this->db->get_where('post', ['id_skripsi' => $id_skripsi])->row_array();
-                if($post[$i]){
-                    $post[$i]['data_skripsi']=$skripsi[$i];
+        $posting=$this->db->get('post')->result_array();
+        $hasil=[];
+        foreach($posting as $p){
+            foreach ($skripsi as $s){
+                if($p['id_skripsi']==$s['id']){
+                    $p['data_skripsi']=$s;
+                    array_push($hasil,$p);
                 }
-            }
-        }
-        $hasil=[[],[],[]];
-        for ($i=0;$i<count($post);$i++){
-            if($post[$i]['tipe']==1){
-                array_push($hasil[0],$post[$i]);
-            }elseif($post[$i]['tipe']==2){
-                array_push($hasil[1],$post[$i]);
-            }else{
-                array_push($hasil[2],$post[$i]);
             }
         }
         return $hasil;
