@@ -76,7 +76,7 @@ class Posting_model extends CI_Model{
     public function createPosting($data){
         $posting = $this->getPostingBySkripsi($data['id_skripsi']);
         if($posting){
-            if($posting['tipe']=$data['tipe']){
+            if($posting[$data['tipe']-1]){
                 return null;
             }else{
                 $this->db->insert('post',$data);
