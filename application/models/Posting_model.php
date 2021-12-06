@@ -10,17 +10,18 @@ class Posting_model extends CI_Model{
     public function getPostingBySkripsi($id_skripsi){
         $post = $this->db->get_where('post', ['id_skripsi' => $id_skripsi])->result_array();
         $post = $this->olahPosting($post);
-        $hasil=[[],[],[]];
-        for ($i=0;$i<count($post);$i++){
-            if($post[$i]['tipe']==1){
-                array_push($hasil[0],$post[$i]);
-            }elseif($post[$i]['tipe']==2){
-                array_push($hasil[1],$post[$i]);
-            }else{
-                array_push($hasil[2],$post[$i]);
-            }
-        }
-        return $hasil;
+        // $hasil=[[],[],[]];
+        // for ($i=0;$i<count($post);$i++){
+        //     if($post[$i]['tipe']==1){
+        //         array_push($hasil[0],$post[$i]);
+        //     }elseif($post[$i]['tipe']==2){
+        //         array_push($hasil[1],$post[$i]);
+        //     }else{
+        //         array_push($hasil[2],$post[$i]);
+        //     }
+        // }
+        // return $hasil;
+        return $post;
     }
     
     public function getPostingByNip($nip){
