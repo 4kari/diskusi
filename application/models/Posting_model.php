@@ -1,5 +1,15 @@
 <?php
 class Posting_model extends CI_Model{
+    // protected $ipSkripsi='http://10.5.12.21/skripsi/api/';
+    // protected $ipPenjadwalan='http://10.5.12.47/penjadwalan/api/';
+    // protected $ipDiskusi='http://10.5.12.56/diskusi/api/';
+    // protected $ipUser='http://10.5.12.26/user/api/';
+
+    protected $ipSkripsi='http://localhost/microservice/skripsi/api/';
+    protected $ipPenjadwalan='http://localhost/microservice/penjadwalan/api/';
+    protected $ipDiskusi='http://localhost/microservice/diskusi/api/';
+    protected $ipUser='http://localhost/microservice/user/api/';
+    
     public function getPosting(){
         return $this->db->get('post')->result_array();
     }
@@ -10,23 +20,11 @@ class Posting_model extends CI_Model{
     public function getPostingBySkripsi($id_skripsi){
         $post = $this->db->get_where('post', ['id_skripsi' => $id_skripsi])->result_array();
         $post = $this->olahPosting($post);
-        // $hasil=[[],[],[]];
-        // for ($i=0;$i<count($post);$i++){
-        //     if($post[$i]['tipe']==1){
-        //         array_push($hasil[0],$post[$i]);
-        //     }elseif($post[$i]['tipe']==2){
-        //         array_push($hasil[1],$post[$i]);
-        //     }else{
-        //         array_push($hasil[2],$post[$i]);
-        //     }
-        // }
-        // return $hasil;
         return $post;
     }
     
     public function getPostingByNip($nip){
-        $skripsi = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/Skripsi/',array('nip'=>$nip), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-        // $skripsi = json_decode($this->curl->simple_get('http://10.5.12.21/skripsi/api/skripsi/',array('nip'=>$nip), array(CURLOPT_BUFFERSIZE => 10)),true)['data];
+        $skripsi = json_decode($this->curl->simple_get($this->ipSkripsi.'Skripsi/',array('nip'=>$nip), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
 
         //update data skripsi status dosen
         for ($i=0;$i<count($skripsi);$i++){
@@ -52,7 +50,7 @@ class Posting_model extends CI_Model{
     }
     private function olahPosting($post){
         for ($i = 0; $i < count($post); $i++){
-            $skripsi = json_decode($this->curl->simple_get('http://localhost/microservice/skripsi/api/skripsi/',array('id' => $post[$i]['id_skripsi']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+            $skripsi = json_decode($this->curl->simple_get($this->ipSkripsi.'skripsi/',array('id' => $post[$i]['id_skripsi']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
             $post[$i]['data_skripsi']=$skripsi;
         }
         return $post;

@@ -1,5 +1,15 @@
 <?php
 class Komentar_model extends CI_Model{
+    // protected $ipSkripsi='http://10.5.12.21/skripsi/api/';
+    // protected $ipPenjadwalan='http://10.5.12.47/penjadwalan/api/';
+    // protected $ipDiskusi='http://10.5.12.56/diskusi/api/';
+    // protected $ipUser='http://10.5.12.26/user/api/';
+
+    protected $ipSkripsi='http://localhost/microservice/skripsi/api/';
+    protected $ipPenjadwalan='http://localhost/microservice/penjadwalan/api/';
+    protected $ipDiskusi='http://localhost/microservice/diskusi/api/';
+    protected $ipUser='http://localhost/microservice/user/api/';
+    
     public function getKomentar(){
         return $this->db->get('komentar')->result_array();
     }
@@ -9,15 +19,12 @@ class Komentar_model extends CI_Model{
     public function getKomentarByIdPost($id){
         $komentar = $this->db->get_where('komentar', ['id_post' => $id])->result_array();
         for ($i=0;$i<count($komentar);$i++){
-            // $user = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/user/',array('username'=>$komentar['pengirim']))true);
-            $user = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/user/', array('username'=>$komentar[$i]['pengirim'])),true)['data'][0];
+            $user = json_decode($this->curl->simple_get($this->ipUser.'user/', array('username'=>$komentar[$i]['pengirim'])),true)['data'][0];
 
             if($user['level']==3){
-            // $profil = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/dosen/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-            $profil = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/dosen/', array('nip'=>$user['username']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+            $profil = json_decode($this->curl->simple_get($this->ipUser.'dosen/', array('nip'=>$user['username']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
             }else{
-            // $profil = json_decode($this->curl->simple_get('http://10.5.12.26/user/api/mahasiswa/', array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
-            $profil = json_decode($this->curl->simple_get('http://localhost/microservice/user/api/mahasiswa/', array('nim'=>$user['username']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
+            $profil = json_decode($this->curl->simple_get($this->ipUser.'mahasiswa/', array('nim'=>$user['username']), array(CURLOPT_BUFFERSIZE => 10)),true)['data'];
             }
             $komentar[$i]['npengirim'] = $profil['nama'];
         }
