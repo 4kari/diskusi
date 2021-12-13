@@ -3,7 +3,7 @@ class Posting_model extends CI_Model{
     // protected $ipSkripsi='http://10.5.12.21/skripsi/api/';
     // protected $ipPenjadwalan='http://10.5.12.47/penjadwalan/api/';
     // protected $ipDiskusi='http://10.5.12.56/diskusi/api/';
-    // protected $ipUser='http://10.5.12.26/user/api/';
+    // protected $ipUser='http://10.5.12.16/user/api/';
 
     protected $ipSkripsi='http://localhost/microservice/skripsi/api/';
     protected $ipPenjadwalan='http://localhost/microservice/penjadwalan/api/';
