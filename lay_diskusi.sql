@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Nov 2021 pada 14.30
+-- Waktu pembuatan: 13 Des 2021 pada 07.23
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -43,7 +43,17 @@ INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`) VALUES
 (1, 1, '1635684157', 'silahkan dikerjakan file proposalnya untuk melanjutkan ke jenjan', '170411100042'),
 (2, 1, '1635765747', 'segera upload filenya sehingga dapat kami periksa kekurangannya', '170411100024'),
 (3, 1, '1635775209', 'baik akan saya kerjakan', '170411100099'),
-(4, 1, '1635865059', 'sedang saya kerjakan', '170411100099');
+(4, 1, '1635865059', 'sedang saya kerjakan', '170411100099'),
+(5, 8, '1639306683', 'silahkan upload file dan judul yang ingin terapkan', '197406102008121002'),
+(6, 8, '1639314356', 'sip mas silahkan di lanjutkan untuk mendaftar seminar proposal', '198002232008121001'),
+(7, 9, '1639320630', 'silahkan update proposal terbarunya', '197406102008121002'),
+(8, 10, '1639320655', 'silahkan update skripsi terbarunya mas', '197406102008121002'),
+(9, 10, '1639320687', 'baik bapak', '170411100106'),
+(10, 10, '1639320716', 'untuk meetnya silahkan join link berikut :\r\nmeet.trunojoyo.ac.id/1j2n3bnun/', '170411100106'),
+(11, 10, '1639320797', 'ok terimakasih atas pertemuannya saya harap para penguji memberi nilai sesuai apa yang telah dipresentasikan', '198002232008121001'),
+(12, 10, '1639320878', 'ok siap', '198101092006041003'),
+(13, 10, '1639320939', 'sudah saya berikan nilai sesuai kemampuan mahasiswa', '198609262014041001'),
+(14, 10, '1639320988', 'hasil kalkulasi nilai sudah muncul', '170411100042');
 
 -- --------------------------------------------------------
 
@@ -66,7 +76,12 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`id`, `id_skripsi`, `file`, `tipe`, `tanggal_dibuat`) VALUES
 (1, 1, '', 1, '0000-00-00'),
 (2, 2, '', 2, '0000-00-00'),
-(3, 3, '', 3, '0000-00-00');
+(3, 3, '', 3, '0000-00-00'),
+(4, 1, '', 2, '0000-00-00'),
+(7, 1, '', 3, '0000-00-00'),
+(8, 4, '', 1, '0000-00-00'),
+(9, 4, '', 2, '0000-00-00'),
+(10, 4, '', 3, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -120,13 +135,13 @@ ALTER TABLE `tipe`
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tipe`
