@@ -35,29 +35,29 @@ class Posting extends REST_Controller{
         }
     }
 
-    public function index_delete(){
-        $id = $this->delete('id');
-        if ($id == null){
-            $this->response([
-                'status' => false,
-                'message' => 'Tambahkan id'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-        } else {
-            if ($this->mposting->deletePosting($id)>0){
-                //ok
-                $this->response([
-                    'status' => true,
-                    'message' => 'Terhapus'
-                ], REST_Controller::HTTP_NO_CONTENT);
-            }
-            else{
-                $this->response([
-                    'status' => false,
-                    'message' => 'id tidak ditemukan'
-                ], REST_Controller::HTTP_BAD_REQUEST);
-            }          
-        }
-    }
+    // public function index_delete(){
+    //     $id = $this->delete('id');
+    //     if ($id == null){
+    //         $this->response([
+    //             'status' => false,
+    //             'message' => 'Tambahkan id'
+    //         ], REST_Controller::HTTP_BAD_REQUEST);
+    //     } else {
+    //         if ($this->mposting->deletePosting($id)>0){
+    //             //ok
+    //             $this->response([
+    //                 'status' => true,
+    //                 'message' => 'Terhapus'
+    //             ], REST_Controller::HTTP_NO_CONTENT);
+    //         }
+    //         else{
+    //             $this->response([
+    //                 'status' => false,
+    //                 'message' => 'id tidak ditemukan'
+    //             ], REST_Controller::HTTP_BAD_REQUEST);
+    //         }          
+    //     }
+    // }
     public function index_post(){
         $data=[
             'id_skripsi' => $this->post('id_skripsi'),

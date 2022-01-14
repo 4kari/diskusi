@@ -32,29 +32,29 @@ class Komentar extends REST_Controller{
         }
     }
 
-    public function index_delete(){
-        $id = $this->delete('id');
-        if ($id == null){
-            $this->response([
-                'status' => false,
-                'message' => 'tambahkan id'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-        } else {
-            if ($this->mkomentar->deleteKomentar($id)>0){
-                //ok
-                $this->response([
-                    'status' => true,
-                    'message' => 'terhapus'
-                ], REST_Controller::HTTP_NO_CONTENT);
-            }
-            else{
-                $this->response([
-                    'status' => false,
-                    'message' => 'id tidak ditemukan'
-                ], REST_Controller::HTTP_BAD_REQUEST);
-            }          
-        }
-    }
+    // public function index_delete(){
+    //     $id = $this->delete('id');
+    //     if ($id == null){
+    //         $this->response([
+    //             'status' => false,
+    //             'message' => 'tambahkan id'
+    //         ], REST_Controller::HTTP_BAD_REQUEST);
+    //     } else {
+    //         if ($this->mkomentar->deleteKomentar($id)>0){
+    //             //ok
+    //             $this->response([
+    //                 'status' => true,
+    //                 'message' => 'terhapus'
+    //             ], REST_Controller::HTTP_NO_CONTENT);
+    //         }
+    //         else{
+    //             $this->response([
+    //                 'status' => false,
+    //                 'message' => 'id tidak ditemukan'
+    //             ], REST_Controller::HTTP_BAD_REQUEST);
+    //         }          
+    //     }
+    // }
     public function index_post(){
         $data=[
             'id_post' => $this->post('id_post'),
@@ -75,25 +75,25 @@ class Komentar extends REST_Controller{
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-    public function index_put(){
-        $id=$this->put('id');
-        $data=[
-            'id_post' => $this->put('id_post'),
-            'waktu' => $this->put('waktu'),
-            'pesan' => $this->put('pesan'),
-            'pengirim' => $this->put('pengirim')
-        ];
+    // public function index_put(){
+    //     $id=$this->put('id');
+    //     $data=[
+    //         'id_post' => $this->put('id_post'),
+    //         'waktu' => $this->put('waktu'),
+    //         'pesan' => $this->put('pesan'),
+    //         'pengirim' => $this->put('pengirim')
+    //     ];
 
-        if ($this->mkomentar->updateKomentar($data,$id)>0){
-            $this->response([
-                'status' => true,
-                'message' => 'komentar telah diperbarui'
-            ], REST_Controller::HTTP_NO_CONTENT);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'gagal memperbarui komentar'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-        }
-    }
+    //     if ($this->mkomentar->updateKomentar($data,$id)>0){
+    //         $this->response([
+    //             'status' => true,
+    //             'message' => 'komentar telah diperbarui'
+    //         ], REST_Controller::HTTP_NO_CONTENT);
+    //     } else {
+    //         $this->response([
+    //             'status' => false,
+    //             'message' => 'gagal memperbarui komentar'
+    //         ], REST_Controller::HTTP_BAD_REQUEST);
+    //     }
+    // }
 }
