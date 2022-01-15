@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Des 2021 pada 07.23
+-- Waktu pembuatan: 15 Jan 2022 pada 03.55
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -31,7 +31,7 @@ CREATE TABLE `komentar` (
   `id` int(11) NOT NULL,
   `id_post` int(11) NOT NULL,
   `waktu` varchar(32) NOT NULL,
-  `pesan` varchar(128) DEFAULT NULL,
+  `pesan` varchar(300) DEFAULT NULL,
   `pengirim` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,7 +64,6 @@ INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`) VALUES
 CREATE TABLE `post` (
   `id` int(11) NOT NULL,
   `id_skripsi` int(11) NOT NULL,
-  `file` varchar(64) NOT NULL,
   `tipe` int(1) NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,15 +72,15 @@ CREATE TABLE `post` (
 -- Dumping data untuk tabel `post`
 --
 
-INSERT INTO `post` (`id`, `id_skripsi`, `file`, `tipe`, `tanggal_dibuat`) VALUES
-(1, 1, '', 1, '0000-00-00'),
-(2, 2, '', 2, '0000-00-00'),
-(3, 3, '', 3, '0000-00-00'),
-(4, 1, '', 2, '0000-00-00'),
-(7, 1, '', 3, '0000-00-00'),
-(8, 4, '', 1, '0000-00-00'),
-(9, 4, '', 2, '0000-00-00'),
-(10, 4, '', 3, '0000-00-00');
+INSERT INTO `post` (`id`, `id_skripsi`, `tipe`, `tanggal_dibuat`) VALUES
+(1, 1, 1, '0000-00-00'),
+(2, 2, 2, '0000-00-00'),
+(3, 3, 3, '0000-00-00'),
+(4, 1, 2, '0000-00-00'),
+(7, 1, 3, '0000-00-00'),
+(8, 4, 1, '0000-00-00'),
+(9, 4, 2, '0000-00-00'),
+(10, 4, 3, '0000-00-00');
 
 -- --------------------------------------------------------
 

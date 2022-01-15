@@ -61,7 +61,6 @@ class Posting extends REST_Controller{
     public function index_post(){
         $data=[
             'id_skripsi' => $this->post('id_skripsi'),
-            'file' => $this->post('file'),
             'tipe' => $this->post('tipe'),
             'tanggal_dibuat' => $this->post('tanggal_dibuat')
         ];
@@ -82,7 +81,6 @@ class Posting extends REST_Controller{
         $id=$this->put('id');
         $data=[
             'id_skripsi' => $this->put('id_skripsi'),
-            'file' => $this->put('file'),
             'tipe' => $this->put('tipe'),
             'tanggal_dibuat' => $this->put('tanggal_dibuat')
         ];
