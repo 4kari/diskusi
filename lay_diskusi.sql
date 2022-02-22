@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jan 2022 pada 03.55
+-- Waktu pembuatan: 22 Feb 2022 pada 11.16
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 7.4.19
 
@@ -53,7 +53,11 @@ INSERT INTO `komentar` (`id`, `id_post`, `waktu`, `pesan`, `pengirim`) VALUES
 (11, 10, '1639320797', 'ok terimakasih atas pertemuannya saya harap para penguji memberi nilai sesuai apa yang telah dipresentasikan', '198002232008121001'),
 (12, 10, '1639320878', 'ok siap', '198101092006041003'),
 (13, 10, '1639320939', 'sudah saya berikan nilai sesuai kemampuan mahasiswa', '198609262014041001'),
-(14, 10, '1639320988', 'hasil kalkulasi nilai sudah muncul', '170411100042');
+(14, 10, '1639320988', 'hasil kalkulasi nilai sudah muncul', '170411100042'),
+(15, 11, '1645518624', 'silahkan upload file proposalnya', '170411100042'),
+(16, 11, '1645518688', 'baik bu', '170411100001'),
+(17, 11, '1645518726', 'judulnya silahkan dituliskan', '170411100024'),
+(18, 11, '1645518754', 'baik bapak', '170411100001');
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,10 @@ INSERT INTO `post` (`id`, `id_skripsi`, `tipe`, `tanggal_dibuat`) VALUES
 (7, 1, 3, '0000-00-00'),
 (8, 4, 1, '0000-00-00'),
 (9, 4, 2, '0000-00-00'),
-(10, 4, 3, '0000-00-00');
+(10, 4, 3, '0000-00-00'),
+(11, 6, 1, '0000-00-00'),
+(12, 6, 2, '0000-00-00'),
+(13, 6, 3, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -134,13 +141,13 @@ ALTER TABLE `tipe`
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `tipe`
